@@ -15,6 +15,7 @@
 - 🎨 **Clean Dark UI** — Built with React + Tailwind CSS
 
 ---
+Live- https://query-chart.vercel.app/
 
 ## 🛠 Tech Stack
 
@@ -25,7 +26,7 @@
 | Database | PostgreSQL (Supabase) |
 | AI | OpenAI GPT-4o |
 | Charts | Recharts |
-| Deploy | Vercel + Render |
+| Deploy | Vercel |
 
 ---
 
