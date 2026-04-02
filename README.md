@@ -2,7 +2,7 @@
 
 > Ask your database anything in plain English. QueryCart uses GPT-4o to instantly convert natural language into SQL, runs it on a live PostgreSQL database, and visualizes the results as interactive charts and tables.
 
-![QueryCart Demo](./client/public/demo.png)
+![QueryCart Demo](./client/public/demo.jpg)
 
 ---
 
