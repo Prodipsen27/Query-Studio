@@ -1,11 +1,12 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, sidebar }) => {
   return (
     <div className="flex h-screen w-full bg-[#0a0f1c] overflow-hidden">
-      {/* Sidebar - Fixed width */}
-      <Sidebar />
+      {/* Sidebar - Dynamic */}
+      {sidebar}
+
 
       {/* Main Content Area - Scrollable */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">

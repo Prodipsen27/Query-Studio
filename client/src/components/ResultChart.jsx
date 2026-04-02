@@ -47,7 +47,7 @@ const ResultChart = ({ result }) => {
       <div className="flex-1 p-6 min-h-[300px] relative">
         <div className="absolute inset-x-6 top-6 bottom-16 bg-gradient-to-t from-indigo-500/[0.02] to-transparent rounded-xl pointer-events-none" />
         
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" minHeight={350}>
           <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
             <XAxis 

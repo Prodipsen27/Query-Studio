@@ -1,7 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import MainLayout from "./components/MainLayout";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+
 import QueryInput from "./components/QueryInput";
 import SQLDisplay from "./components/SQLDisplay";
 import ResultTable from "./components/ResultTable";
@@ -21,7 +19,7 @@ function App() {
   const [error, setError] = useState(null);
   const [history, setHistory] = useState([]);
   const [stats, setStats] = useState(null);
-  
+
   const queryInputRef = useRef(null);
 
   // Load history and stats on mount
@@ -37,7 +35,7 @@ function App() {
 
     const fetchStats = async () => {
       try {
-        const res = await fetch('/api/stats');
+        const res = await fetch('https://query-studio.vercel.app/api/stats');
         const data = await res.json();
         setStats(data);
       } catch (e) {
@@ -56,7 +54,7 @@ function App() {
     setCurrentView("query-studio");
 
     try {
-      const res = await fetch("/api/query", {
+      const res = await fetch("https://query-studio.vercel.app/api/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),
@@ -74,7 +72,7 @@ function App() {
         rowCount: data.rowCount,
         sql: data.sql
       };
-      
+
       const updatedHistory = [newHistoryItem, ...history.filter(h => h.question !== question)].slice(0, 50);
       setHistory(updatedHistory);
       localStorage.setItem("query_history", JSON.stringify(updatedHistory));
@@ -133,11 +131,11 @@ function App() {
   }, [result]);
 
   return (
-    <>   
-    {/* <Header currentView={currentView} onNavigate={handleNavigate} /> */}
-      
+    <>
+      {/* <Header currentView={currentView} onNavigate={handleNavigate} /> */}
+
       <div className="max-w-[1600px] mx-auto p-10 space-y-10">
-        
+
         {/* View Switcher Logic */}
         {currentView === 'dashboard' && <DashboardView stats={stats} />}
         {currentView === 'history' && <HistoryView history={history} onReRun={handleQuery} onClear={clearHistory} />}
@@ -169,10 +167,10 @@ function App() {
                   </div>
                 </div>
               </div>
-              
+
               {result && (
                 <div className="flex items-center gap-3">
-                  <button 
+                  <button
                     onClick={() => handleQuery(lastQuestion)}
                     className="px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl text-xs font-bold text-white transition-all flex items-center gap-2"
                   >
@@ -259,12 +257,12 @@ function App() {
             © 2026 QueryCart Intelligence System. Confidential Data.
           </p>
           <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-             <button className="hover:text-white transition-colors">Data Privacy</button>
-             <button className="hover:text-white transition-colors text-emerald-500">API Status: Running</button>
+            <button className="hover:text-white transition-colors">Data Privacy</button>
+            <button className="hover:text-white transition-colors text-emerald-500">API Status: Running</button>
           </div>
         </footer>
       </div>
-</>   
+    </>
   );
 }
 
