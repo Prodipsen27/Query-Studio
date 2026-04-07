@@ -13,11 +13,10 @@ router.get("/stats", async (req, res) => {
     const summaryQuery = `
       SELECT 
         COALESCE(SUM(total_price), 0) as total_revenue,
-        COUNT(DISTINCT customer_name) as active_customers,
+        COUNT(DISTINCT name) as active_customers,
         COUNT(*) as orders_processed,
         COALESCE(AVG(total_price), 0) as avg_order_value
-      FROM orders
-      LEFT JOIN order_items ON orders.id = order_items.order_id;
+      FROM customer;
     `;
     const summaryResult = await pool.query(summaryQuery);
     const summary = summaryResult.rows[0];
@@ -25,31 +24,40 @@ router.get("/stats", async (req, res) => {
     // 2. Weekly Sales Velocity (last 7 days)
     const velocityQuery = `
       SELECT 
-        TO_CHAR(order_date, 'Mon') as name,
+        TO_CHAR(added_on, 'Mon DD') as name,
         SUM(total_price) as sales
-      FROM orders
-      JOIN order_items ON orders.id = order_items.order_id
-      WHERE order_date >= CURRENT_DATE - INTERVAL '7 days'
-      GROUP BY order_date
-      ORDER BY order_date ASC;
+      FROM customer
+      WHERE added_on >= CURRENT_DATE - INTERVAL '30 days'
+      GROUP BY added_on
+      ORDER BY added_on ASC;
     `;
     const velocityResult = await pool.query(velocityQuery);
     
     // 3. Top Categories
     const categoryQuery = `
       SELECT 
-        category as name,
-        SUM(total_price) as value
-      FROM products
-      JOIN order_items ON products.id = order_items.product_id
-      GROUP BY category
+        c.categories as name,
+        SUM(od.price * od.qty) as value
+      FROM categories c
+      JOIN product p ON c.id = p.categories_id
+      JOIN order_detail od ON p.id = od.product_id
+      GROUP BY c.categories
       ORDER BY value DESC
       LIMIT 5;
     `;
     const categoryResult = await pool.query(categoryQuery);
 
-    // 4. Extract DB Name from connection string or pool options
-    const dbName = pool.options.database || pool.options.connectionString.split('/').pop().split('?')[0];
+    // 4. Extract DB Name safely
+    let dbName = "Production_DB";
+    try {
+      if (pool.options.database) {
+        dbName = pool.options.database;
+      } else if (pool.options.connectionString) {
+        dbName = pool.options.connectionString.split('/').pop().split('?')[0];
+      }
+    } catch (e) {
+      console.error("Failed to extract DB name:", e);
+    }
 
     res.json({
       summary: {
@@ -63,8 +71,12 @@ router.get("/stats", async (req, res) => {
       dbName: dbName
     });
   } catch (error) {
-    console.error("Stats error:", error);
-    res.status(500).json({ error: "Failed to fetch stats", details: error.message });
+    console.error("Stats API Error Details:", error);
+    res.status(500).json({ 
+      error: "Backend processing error", 
+      message: error.message,
+      hint: "Check if database tables (customer, categories, product, order_detail) exist."
+    });
   }
 });
 
