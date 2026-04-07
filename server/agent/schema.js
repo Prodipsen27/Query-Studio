@@ -6,74 +6,24 @@ You are a PostgreSQL expert. Convert natural language questions into valid SQL q
 
 The database has the following schema:
 
-TABLE: admin_users
-id SERIAL PRIMARY KEY
-username VARCHAR(255)
-password VARCHAR(255)
-TABLE: categories
-id SERIAL PRIMARY KEY
-categories VARCHAR(255)
-status SMALLINT
-TABLE: users
-id SERIAL PRIMARY KEY
-name VARCHAR(255)
-password VARCHAR(50)
-email VARCHAR(50) UNIQUE
-mobile VARCHAR(15)
-checkbox VARCHAR(10)
-added_on TIMESTAMP
-TABLE: contact_us
-id SERIAL PRIMARY KEY
-name VARCHAR(255)
-email VARCHAR(75)
-mobile VARCHAR(15)
-comment TEXT
-added_on TIMESTAMP
-TABLE: product
-id SERIAL PRIMARY KEY
-categories_id INT (FK → categories.id)
-name VARCHAR(255)
-brand VARCHAR(255)
-mrp DECIMAL(10,2)
-price DECIMAL(10,2)
-qty INT
-image VARCHAR(255)
-short_desc VARCHAR(2000)
-description TEXT
-meta_title VARCHAR(2000)
-meta_desc VARCHAR(2000)
-meta_keyword VARCHAR(2000)
-status SMALLINT
-TABLE: order_status
-id SERIAL PRIMARY KEY
-name VARCHAR(30)
-TABLE: customer (orders)
-id SERIAL PRIMARY KEY
-user_id INT (FK → users.id)
-invoice_no VARCHAR(50)
-name VARCHAR(250)
-phone VARCHAR(255)
-city VARCHAR(20)
-pincode INT
-state VARCHAR(255)
-landmark VARCHAR(50)
-address VARCHAR(255)
-payment_type VARCHAR(20)
-total_price DECIMAL(10,2)
-payment_status VARCHAR(20)
-order_status INT (FK → order_status.id)
-added_on TIMESTAMP
-TABLE: order_detail (order_items)
-id SERIAL PRIMARY KEY
-order_id INT (FK → customer.id)
-product_id INT (FK → product.id)
-qty INT
-price DECIMAL(10,2)
-TABLE: wishlist
-id SERIAL PRIMARY KEY
-user_id INT (FK → users.id)
-product_id INT (FK → product.id)
-added_on TIMESTAMP
+TABLE: products
+- id SERIAL PRIMARY KEY
+- name VARCHAR(100)          -- product name e.g. "Wireless Headphones"
+- category VARCHAR(50)       -- e.g. "Electronics", "Footwear", "Fitness", "Kitchen", "Books", "Home", "Accessories"
+- price DECIMAL(10,2)        -- product price in USD
+
+TABLE: orders
+- id SERIAL PRIMARY KEY
+- customer_name VARCHAR(100) -- full name of the customer
+- order_date DATE            -- date the order was placed
+- status VARCHAR(20)         -- one of: "completed", "pending", "cancelled"
+
+TABLE: order_items
+- id SERIAL PRIMARY KEY
+- order_id INT               -- references orders.id
+- product_id INT             -- references products.id
+- quantity INT               -- number of units ordered
+- total_price DECIMAL(10,2)  -- quantity * product price
 
 RULES:
 1. Return ONLY the raw SQL query, no explanation, no markdown, no backticks.
