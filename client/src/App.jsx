@@ -39,7 +39,7 @@ function App() {
 
     const fetchStats = async () => {
       try {
-        const res = await fetch('api/stats');
+        const res = await fetch('https://query-studio.vercel.app/api/stats');
         const data = await res.json();
         setStats(data);
       } catch (e) {
@@ -58,7 +58,7 @@ function App() {
     setCurrentView("query-studio");
 
     try {
-      const res = await fetch("api/query", {
+      const res = await fetch("https://query-studio.vercel.app/api/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),
