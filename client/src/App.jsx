@@ -39,7 +39,7 @@ function App() {
 
     const fetchStats = async () => {
       try {
-        const res = await fetch('https://query-studio.vercel.app/api/stats');
+        const res = await fetch('https://query-studio.vercel.app');
         const data = await res.json();
         setStats(data);
       } catch (e) {
