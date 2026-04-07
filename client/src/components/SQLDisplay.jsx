@@ -20,28 +20,32 @@ const SQLDisplay = ({ sql }) => {
         <div className="lg:w-1/3 p-6 border-b lg:border-b-0 lg:border-r border-white/5 space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Query Strategy</h3>
-            <span className="flex items-center gap-1 text-[10px] font-bold bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded border border-indigo-500/20">
+            <span className="flex items-center gap-1 text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded border border-primary/20">
               <Cpu size={10} />
               GPT-4 Optimized
             </span>
+
           </div>
           
           <p className="text-sm text-slate-300 leading-relaxed">
-            Interpreting your question to extract <span className="text-indigo-400 font-medium">categorical groupings</span> and 
-            <span className="text-indigo-400 font-medium"> aggregated metrics</span>. 
+            Interpreting your question to extract <span className="text-primary font-medium">categorical groupings</span> and 
+            <span className="text-primary font-medium"> aggregated metrics</span>. 
             Joining relevant transactional tables to provide a comprehensive dimensional view.
           </p>
+
 
           <div className="pt-2">
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-[11px] text-slate-500">
-                <div className="w-1 h-1 bg-indigo-500 rounded-full" />
+                <div className="w-1 h-1 bg-primary rounded-full" />
                 Index optimized execution
               </li>
+
               <li className="flex items-center gap-2 text-[11px] text-slate-500">
-                <div className="w-1 h-1 bg-indigo-500 rounded-full" />
+                <div className="w-1 h-1 bg-primary rounded-full" />
                 Read-only safety enforced
               </li>
+
             </ul>
           </div>
         </div>
@@ -65,9 +69,10 @@ const SQLDisplay = ({ sql }) => {
             </div>
           </div>
           
-          <div className="p-6 font-mono text-xs leading-relaxed text-indigo-300/90 overflow-x-auto whitespace-pre">
+          <div className="p-6 font-mono text-xs leading-relaxed text-primary/90 overflow-x-auto whitespace-pre">
             {sql}
           </div>
+
         </div>
       </div>
     </div>

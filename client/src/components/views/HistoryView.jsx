@@ -15,11 +15,12 @@ const HistoryView = ({ history = [], onReRun, onClear }) => {
       <section className="flex items-end justify-between gap-6">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold text-white flex items-center gap-3">
-             <div className="p-2 rounded-xl bg-indigo-600/20 text-indigo-400">
+             <div className="p-2 rounded-xl bg-primary/20 text-primary">
                <HistoryIcon size={24} />
              </div>
              Query History
           </h1>
+
           <p className="text-slate-500 text-sm">Review and re-run your previous natural language analyses</p>
         </div>
         {history.length > 0 && (
@@ -46,14 +47,16 @@ const HistoryView = ({ history = [], onReRun, onClear }) => {
           history.map((item, index) => (
             <div 
               key={index}
-              className="glass-card group hover:border-indigo-500/30 transition-all cursor-pointer p-1 rounded-2xl"
+              className="glass-card group hover:border-primary/30 transition-all cursor-pointer p-1 rounded-2xl"
               onClick={() => onReRun(item.question)}
             >
+
               <div className="p-5 flex items-center justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="mt-1 w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-500 group-hover:bg-indigo-500/20 group-hover:text-indigo-400 transition-colors">
+                  <div className="mt-1 w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-500 group-hover:bg-primary/20 group-hover:text-primary transition-colors">
                     <Search size={16} />
                   </div>
+
                   <div className="space-y-1">
                     <h3 className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors tracking-tight">
                       {item.question}
@@ -65,10 +68,10 @@ const HistoryView = ({ history = [], onReRun, onClear }) => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 pr-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
-                   <button className="p-2 text-slate-500 hover:text-indigo-400">
+                   <button className="p-2 text-slate-500 hover:text-primary">
                      <ExternalLink size={16} />
                    </button>
-                   <ChevronRight size={18} className="text-indigo-500" />
+                   <ChevronRight size={18} className="text-primary" />
                 </div>
               </div>
             </div>
@@ -78,13 +81,14 @@ const HistoryView = ({ history = [], onReRun, onClear }) => {
 
       {/* Tip */}
       {history.length > 0 && (
-        <div className="p-6 bg-indigo-500/5 rounded-2xl border border-indigo-500/10 flex items-center gap-4">
-           <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold">!</div>
+        <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10 flex items-center gap-4">
+           <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">!</div>
            <p className="text-xs text-slate-400 leading-relaxed font-medium">
              History is stored locally in your browser cache. Clearing site data will reset these archives.
            </p>
         </div>
       )}
+
     </div>
   );
 };

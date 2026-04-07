@@ -11,9 +11,10 @@ import {
 } from 'lucide-react';
 
 const InsightCard = ({ title, description, icon: Icon, color, impact }) => (
-  <div className="glass-card p-6 rounded-2xl space-y-4 border-l-4 border-l-indigo-500/50">
+  <div className="glass-card p-6 rounded-2xl space-y-4 border-l-4 border-l-primary/50">
     <div className="flex items-center justify-between">
-      <div className={`p-2 rounded-xl bg-indigo-600/10 text-indigo-400`}>
+      <div className={`p-2 rounded-xl bg-primary/10 text-primary`}>
+
         <Icon size={20} />
       </div>
       <span className={`text-[10px] font-bold uppercase tracking-widest text-slate-500`}>
@@ -24,7 +25,8 @@ const InsightCard = ({ title, description, icon: Icon, color, impact }) => (
       <h3 className="text-sm font-bold text-white tracking-wide">{title}</h3>
       <p className="text-xs text-slate-400 leading-relaxed font-medium">{description}</p>
     </div>
-    <button className="flex items-center gap-2 text-[10px] font-bold text-indigo-400 group uppercase tracking-widest pt-2">
+    <button className="flex items-center gap-2 text-[10px] font-bold text-primary group uppercase tracking-widest pt-2">
+
       Deep Dive
       <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
     </button>
@@ -38,13 +40,15 @@ const InsightsView = ({ stats }) => {
   return (
     <div className="space-y-12 animate-fade-in max-w-5xl">
        <section className="space-y-3">
-          <div className="flex items-center gap-2 text-indigo-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">
+          <div className="flex items-center gap-2 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-2">
+
             <Sparkles size={12} />
             AI Analytical Luminary
           </div>
           <h1 className="text-3xl font-bold text-white">Anomalies & Growth Shifts</h1>
           <p className="text-slate-500 text-sm max-w-2xl">
-            Our AI engine has detected significant shifts in transaction velocity for <span className="text-indigo-400 font-bold">{topCategory}</span> relative to historical baselines.
+            Our AI engine has detected significant shifts in transaction velocity for <span className="text-primary font-bold">{topCategory}</span> relative to historical baselines.
+
           </p>
        </section>
 
@@ -71,17 +75,20 @@ const InsightsView = ({ stats }) => {
        </div>
 
        {/* Detailed Analysis Section */}
-       <div className="glass-card rounded-[2.5rem] bg-indigo-600/5 border border-indigo-500/10 overflow-hidden">
+       <div className="glass-card rounded-[2.5rem] bg-primary/5 border border-primary/10 overflow-hidden">
+
           <div className="p-10 flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2 space-y-6">
                <div className="flex items-center gap-3">
-                 <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                 <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/30">
+
                    <Cpu size={24} className="text-white" />
                  </div>
                  <h2 className="text-2xl font-bold text-white">Smart Predictions</h2>
                </div>
                <p className="text-slate-400 text-sm leading-relaxed font-medium">
-                 Predicted revenue for the next cycle is trending upwards. We recommend focusing 15% more budget on the <span className="text-indigo-400 font-bold">{topCategory}</span> segment based on seasonal velocity.
+                 Predicted revenue for the next cycle is trending upwards. We recommend focusing 15% more budget on the <span className="text-primary font-bold">{topCategory}</span> segment based on seasonal velocity.
+
                </p>
 
                <div className="grid grid-cols-2 gap-4">
@@ -97,8 +104,9 @@ const InsightsView = ({ stats }) => {
             </div>
             
             <div className="lg:w-1/2 w-full grid grid-cols-2 gap-4">
-               <div className="aspect-square bg-indigo-500/10 rounded-3xl border border-indigo-500/20 flex flex-col items-center justify-center space-y-3 hover:bg-indigo-500/20 transition-all cursor-pointer">
-                 <PieChart size={32} className="text-indigo-400" />
+               <div className="aspect-square bg-primary/10 rounded-3xl border border-primary/20 flex flex-col items-center justify-center space-y-3 hover:bg-primary/20 transition-all cursor-pointer">
+                 <PieChart size={32} className="text-primary" />
+
                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">Share Shift</span>
                </div>
                <div className="aspect-square bg-white/5 rounded-3xl border border-white/5 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 transition-all cursor-pointer">

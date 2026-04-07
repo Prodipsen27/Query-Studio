@@ -35,7 +35,7 @@ const ResultChart = ({ result }) => {
           <p className="text-[10px] text-slate-500 font-medium mt-0.5">Quarterly performance breakdown</p>
         </div>
         <div className="flex bg-white/5 p-1 rounded-lg border border-white/5">
-          <button className="p-1 px-2 bg-indigo-500/20 text-indigo-400 rounded-md">
+          <button className="p-1 px-2 bg-primary/20 text-primary rounded-md">
             <BarChart3 size={14} />
           </button>
           <button className="p-1 px-2 text-slate-500 hover:text-slate-300">
@@ -45,7 +45,7 @@ const ResultChart = ({ result }) => {
       </div>
 
       <div className="flex-1 p-6 min-h-[300px] relative">
-        <div className="absolute inset-x-6 top-6 bottom-16 bg-gradient-to-t from-indigo-500/[0.02] to-transparent rounded-xl pointer-events-none" />
+        <div className="absolute inset-x-6 top-6 bottom-16 bg-gradient-to-t from-primary/[0.02] to-transparent rounded-xl pointer-events-none" />
         
         <ResponsiveContainer width="100%" height="100%" minHeight={350}>
           <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
@@ -70,14 +70,14 @@ const ResultChart = ({ result }) => {
             <Tooltip 
               cursor={{ fill: '#ffffff03' }}
               contentStyle={{ 
-                backgroundColor: '#0f172a', 
-                borderColor: '#ffffff10',
+                backgroundColor: 'var(--background)', 
+                borderColor: 'var(--card-border)',
                 borderRadius: '12px',
                 fontSize: '11px',
                 boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
                 padding: '12px'
               }}
-              itemStyle={{ color: '#818cf8', fontWeight: 700 }}
+              itemStyle={{ color: 'var(--primary)', fontWeight: 700 }}
               labelStyle={{ color: '#94a3b8', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '9px' }}
             />
             <Bar 
@@ -89,8 +89,8 @@ const ResultChart = ({ result }) => {
               {chartData.map((entry, index) => (
                 <Cell 
                   key={`cell-${index}`} 
-                  fill={index === 0 ? '#6366f1' : '#4f46e5'} 
-                  fillOpacity={0.9}
+                  fill="var(--primary)"
+                  fillOpacity={index === 0 ? 1 : 0.6}
                 />
               ))}
             </Bar>
@@ -102,9 +102,10 @@ const ResultChart = ({ result }) => {
       <div className="px-6 py-4 flex items-center justify-between border-t border-white/5 bg-white/[0.01]">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
+            <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_var(--primary-glow)]" />
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Primary Revenue</span>
           </div>
+
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-slate-700" />
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Growth Segments</span>

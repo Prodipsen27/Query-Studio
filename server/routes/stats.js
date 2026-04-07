@@ -48,6 +48,9 @@ router.get("/stats", async (req, res) => {
     `;
     const categoryResult = await pool.query(categoryQuery);
 
+    // 4. Extract DB Name from connection string or pool options
+    const dbName = pool.options.database || pool.options.connectionString.split('/').pop().split('?')[0];
+
     res.json({
       summary: {
         totalRevenue: parseFloat(summary.total_revenue),
@@ -56,7 +59,8 @@ router.get("/stats", async (req, res) => {
         avgOrderValue: parseFloat(summary.avg_order_value)
       },
       velocity: velocityResult.rows,
-      topCategories: categoryResult.rows
+      topCategories: categoryResult.rows,
+      dbName: dbName
     });
   } catch (error) {
     console.error("Stats error:", error);

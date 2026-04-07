@@ -59,7 +59,8 @@ const ResultTable = ({ result }) => {
       {/* Table Content */}
       <div className="overflow-x-auto min-h-[400px]">
         <table className="w-full text-left text-sm whitespace-nowrap">
-          <thead className="bg-[#0f172a]/50 text-slate-500 uppercase text-[10px] font-bold tracking-[0.15em]">
+          <thead className="bg-background/50 text-slate-500 uppercase text-[10px] font-bold tracking-[0.15em]">
+
             <tr>
               {result.columns.map((col) => (
                 <th key={col} className="px-6 py-4 border-b border-white/5 font-bold">
@@ -72,7 +73,8 @@ const ResultTable = ({ result }) => {
           </thead>
           <tbody className="divide-y divide-white/[0.03]">
             {result.rows.map((row, i) => (
-              <tr key={i} className="hover:bg-indigo-500/[0.03] transition-colors group">
+              <tr key={i} className="hover:bg-primary/[0.03] transition-colors group">
+
                 {result.columns.map((col) => (
                   <td key={col} className="px-6 py-4.5 font-medium text-slate-200 group-hover:text-white">
                     {row[col] === null ? (
@@ -122,12 +124,13 @@ const ResultTable = ({ result }) => {
           <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/5 bg-white/5 text-slate-500 hover:text-white transition-all text-xs font-bold disabled:opacity-30" disabled>
             &lt;
           </button>
-          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 text-xs font-bold">
+          <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-primary text-xs font-bold">
             1
           </button>
           <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/5 bg-white/5 text-slate-500 hover:text-white transition-all text-xs font-bold disabled:opacity-30" disabled>
             &gt;
           </button>
+
         </div>
       </div>
     </div>

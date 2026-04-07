@@ -22,9 +22,10 @@ import {
 const StatCard = ({ title, value, icon: Icon, trend, trendValue, color, loading }) => (
   <div className="glass-card p-6 rounded-2xl space-y-4">
     <div className="flex items-center justify-between">
-      <div className={`p-2 rounded-lg bg-indigo-500/10 text-indigo-400`}>
+      <div className={`p-2 rounded-lg bg-primary/10 text-primary`}>
         <Icon size={20} />
       </div>
+
       {!loading && (
         <div className={`flex items-center gap-1 text-[10px] font-bold ${trend === 'up' ? 'text-emerald-500' : 'text-rose-500'}`}>
           {trend === 'up' ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
@@ -99,12 +100,14 @@ const Dashboard = ({ stats }) => {
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-sm font-bold text-white">Sales Velocity (Last 7 Days)</h3>
             <div className="flex bg-white/5 p-1 rounded-lg border border-white/5">
-              <button className="px-3 py-1 text-[10px] font-bold text-white bg-indigo-500/20 rounded-md uppercase tracking-tighter">Live Dataset</button>
+              <button className="px-3 py-1 text-[10px] font-bold text-white bg-primary/20 rounded-md uppercase tracking-tighter">Live Dataset</button>
             </div>
+
           </div>
           <div className="h-[300px] w-full flex items-center justify-center">
             {loading ? (
-              <Loader2 className="text-indigo-500 animate-spin" size={32} />
+              <Loader2 className="text-primary animate-spin" size={32} />
+
             ) : velocity.length === 0 ? (
               <p className="text-slate-600 text-xs italic tracking-widest font-bold">No historical velocity found in buffer</p>
             ) : (
@@ -112,19 +115,20 @@ const Dashboard = ({ stats }) => {
                 <AreaChart data={velocity}>
                   <defs>
                     <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
                   <XAxis dataKey="name" stroke="#475569" fontSize={10} tickLine={false} axisLine={false} dy={10} />
                   <YAxis stroke="#475569" fontSize={10} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#ffffff10', borderRadius: '12px', fontSize: '10px' }}
-                    itemStyle={{ color: '#818cf8', fontWeight: 600 }}
+                    contentStyle={{ backgroundColor: 'var(--background)', borderColor: 'var(--card-border)', borderRadius: '12px', fontSize: '10px' }}
+                    itemStyle={{ color: 'var(--primary)', fontWeight: 600 }}
                   />
-                  <Area type="monotone" dataKey="sales" stroke="#6366f1" strokeWidth={2} fillOpacity={1} fill="url(#colorSales)" />
+                  <Area type="monotone" dataKey="sales" stroke="var(--primary)" strokeWidth={2} fillOpacity={1} fill="url(#colorSales)" />
                 </AreaChart>
+
               </ResponsiveContainer>
             )}
           </div>
@@ -147,10 +151,11 @@ const Dashboard = ({ stats }) => {
             ))}
           </div>
           <div className="pt-4 border-t border-white/5">
-            <button className="w-full py-2.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 text-xs font-bold rounded-xl transition-all uppercase tracking-widest">
+            <button className="w-full py-2.5 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-bold rounded-xl transition-all uppercase tracking-widest">
               Live System Audit
             </button>
           </div>
+
         </div>
       </div>
     </div>
